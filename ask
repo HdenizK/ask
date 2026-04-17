@@ -1,0 +1,25 @@
+#/bin/bash
+
+if [[ -z "$ASK_API_URL" || -z "$ASK_MODEL" || -z "$ASK_API_KEY" ]]; then
+  echo "Error, all variables must be set...."
+  exit 1
+fi
+
+ARGS_INPUT="$*"
+PIPE_INPUT=""
+if [[ ! -t 0 ]]; then
+  PIPE_INPUT=$(cat)
+fi
+
+USER_PROMPT="${ARGS_INPUT} ${PIPE_INPUT}"
+
+PAYLOAD=$(jq -n \
+	--arg model "$ASK_MODEL" \
+	--arg sys_content "You are a CLI tool. Output just plain text, keep it short." \
+	--arg user_content "$USER_PROMPT" \
+	'{model: $model, messages: [{role: "system", content: $sys_content}, {role: "user", content: $user_content}]}')
+
+curl -s "$ASK_API_URL" \
+	-H "Content-Type: application/json" \
+	-H "Authorization: Bearer $ASK_API_KEY" \
+	-d "$PAYLOAD" | jq -r '.choices.[0].message.content'
