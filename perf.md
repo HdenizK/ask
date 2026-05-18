@@ -1,0 +1,7 @@
+- SQL Injection vulnerability due to direct f-string concatenation in the database query.
+- Resource leak: `sqlite3` database connection is never closed, potentially exhausting file descriptors.
+- Exponential time complexity ($O(2^n)$) in Fibonacci function causes significant CPU bottleneck for large inputs.
+- Buffer overflow in C++ `process_user_input` function due to unsafe `strcpy` usage without length checks.
+- Memory leak in C++ `do_something_silly` function as allocated heap memory is never deallocated with `delete[]`.
+- Inefficient file I/O in `read_log_file` due to synchronous, line-by-line output to standard stream.
+- Syntax and runtime errors: `cursor` is not called, `true` is lowercase, and `else` block lacks a colon.

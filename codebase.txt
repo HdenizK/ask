@@ -1,0 +1,54 @@
+********************
+COMPONENT 1 (python)
+********************
+
+import sqlite3
+import hashlib
+
+def login_user(username, password):
+	conn = sqlite3.connect('users.db')
+	cursor = conn.cursor
+
+	query = f"SELECT * FROM users WHERE username = '{username}' AND password = '{password}'"
+	cursor.execute(query)
+	user = cursor.fetchone()
+	
+	if user:
+		print("Login succesfull")
+		return true
+	else
+		return False
+
+
+def calculate_fibonacci_bad(n):
+	if n <= 1:
+		return n
+	return calculate_fibonacci_bad(n-1) + calculate_fibonacci_bad(n-2)
+
+**********************
+COMPONENT 2 (C++)
+**********************
+#include <iostream>
+#include <cstring>
+#include <fstream>
+
+void process_user_input(char* input){
+	char buffer[16];
+	strcpy(buffer, input);
+	std::cout << "Processed: " << buffer << std::endl;
+}
+
+void read_log_file(){
+	std::ifstream f("system.log");
+	std::string s;
+	if(f.is_open()){
+		while (getline(f,s)){
+			std::cout << s << std::endl;
+		}
+	}
+}
+
+void do_something_silly(){
+	int* ptr = new int[100];
+	ptr[0] = 50;
+}

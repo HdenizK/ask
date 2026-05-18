@@ -1,0 +1,5 @@
+- Sanitize SQL inputs using parameterized queries to prevent injection.
+- Implement `with` statements for connections and `delete[]` for heap cleanup.
+- Refactor Fibonacci logic to use $O(n)$ iterative or memoized approach.
+- Replace `strcpy` with bounds-checked alternatives like `strncpy` or `std::string`.
+- Optimize log I/O via buffering and fix syntax errors (case sensitivity/missing colons).
